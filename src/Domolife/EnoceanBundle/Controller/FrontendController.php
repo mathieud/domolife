@@ -10,6 +10,8 @@ class FrontendController extends Controller
 {
     public function indexAction()
     {
-        return new Response('Hello', 200);
+        $lamps = $this->getDoctrine()->getRepository('DomolifeEnoceanBundle:Device')->findBy(array('type' => 'lamp'));
+
+        return $this->render('DomolifeEnoceanBundle:Frontend:index.html.twig', array('lamps' => $lamps));
     }
 }

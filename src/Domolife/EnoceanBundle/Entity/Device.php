@@ -1,10 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Device
  *
@@ -13,8 +8,6 @@
 namespace Domolife\EnoceanBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
 * @ORM\Entity()
@@ -23,7 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Device {
     /**
     * @ORM\Id
-    * @ORM\Column(type="string", length=6, unique=true)
+    * @ORM\Column(type="string", length=8, unique=true)
     */
     private $id;
     
@@ -31,7 +24,22 @@ class Device {
     * @ORM\Column(type="string", length=20)
     */
     private $type;
-    
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $data;
+
+    /**
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    protected $time;
 
     /**
      * Get id
@@ -77,5 +85,74 @@ class Device {
         $this->id = $id;
     
         return $this;
+    }
+
+    /**
+     * Set data
+     *
+     * @param integer $data
+     * @return Device
+     */
+    public function setData($data)
+    {
+        $this->data = $data;
+    
+        return $this;
+    }
+
+    /**
+     * Get data
+     *
+     * @return integer 
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * Set time
+     *
+     * @param \DateTime $time
+     * @return Device
+     */
+    public function setTime($time)
+    {
+        $this->time = $time;
+    
+        return $this;
+    }
+
+    /**
+     * Get time
+     *
+     * @return \DateTime 
+     */
+    public function getTime()
+    {
+        return $this->time;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Device
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }
